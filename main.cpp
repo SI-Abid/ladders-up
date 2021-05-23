@@ -36,6 +36,8 @@ int main()
         cout << X.first << " " << X.second.first<<" "<<X.second.second<<endl;
     }
 
+    play();
+
     // prompt();
     // auto gm = gameboard.MAP;
     // for (int i = 1; i < gm.size(); i++)
