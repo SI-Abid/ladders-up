@@ -65,7 +65,8 @@ void signup()
     {
         cout << "Username already exist. press 1 to login or press 2 to try again..." << endl;
         cin >> lt;
-        lt == 1 ? return login() : return signup();
+        lt == 1 ? login() : signup();
+        return;
     }
     LineBreak:      // come here when pswd not matched
     cout << "Password: ";
@@ -89,6 +90,7 @@ void signup()
         cout << "Password doesn't match! Try again..." << endl;
         goto LineBreak;
     }
+    return;
 }
 
 void prompt()
