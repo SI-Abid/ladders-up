@@ -7,7 +7,6 @@ using namespace std;
 
 // const int n=10;
 // const char *name = "userdata.txt";
-fstream file;
 
 void play();
 
@@ -19,19 +18,20 @@ int main()
     prompt();    
 
     string uuid;
+    fstream file;
     file.open(filename, ios::in);
     if (file)
     {
         while (file >> uuid)
         {
-            file >> usrpwd[uuid].first >> usrpwd[uuid].second;
+            file >> usr_pwd[uuid].pswd >> usr_pwd[uuid].dvsn;
         }
     }
     file.close();
 
-    for(auto X : usrpwd)
+    for(auto X : usr_pwd)
     {
-        cout << X.first << " " << X.second.first<<" "<<X.second.second<<endl;
+        cout << X.first << " " << X.second.pswd<<" "<<X.second.dvsn<<endl;
     }
 
     play();
