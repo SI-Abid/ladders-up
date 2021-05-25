@@ -6,19 +6,18 @@
 using namespace std;
 
 // const int n=10;
-const char *filename = "userdata.txt";
-map<string, pair<string, string>> usr_pwd;
+// const char *name = "userdata.txt";
+map<string, pair<string, string>> usrpwd;
 fstream file;
 
 void play();
-void prompt();
-void login();
-void signup();
 
 int main()
 {
     system("clear");
-    savedata();
+    
+    LoadData();
+    prompt();    
 
     string uuid;
     file.open(filename, ios::in);
@@ -26,12 +25,12 @@ int main()
     {
         while (file >> uuid)
         {
-            file >> usr_pwd[uuid].first >> usr_pwd[uuid].second;
+            file >> usrpwd[uuid].first >> usrpwd[uuid].second;
         }
     }
     file.close();
 
-    for(auto X : usr_pwd)
+    for(auto X : usrpwd)
     {
         cout << X.first << " " << X.second.first<<" "<<X.second.second<<endl;
     }
@@ -54,6 +53,7 @@ void play()
     cout<<"Enter size: ";
     int n;
     cin >> n;
+    
     Board gameboard(n);
     gameboard.makeBoard();
     int **board = gameboard.data;
@@ -61,6 +61,7 @@ void play()
     int pos = 1, inc;
     while (pos < n * n)
     {
+        system("clear"); // for linux
         for (int i = 0; i < n; i++)
         {
             for (int k = 0; k <= 4 * n; k++)
@@ -83,7 +84,7 @@ void play()
         pos += inc;
         // printf("\033");
         // system("cls");       // for windows
-        system("clear"); // for linux
+        
     }
     cout << endl;
 }
