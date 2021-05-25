@@ -7,7 +7,6 @@ using namespace std;
 
 // const int n=10;
 // const char *name = "userdata.txt";
-map<string, pair<string, string>> usrpwd;
 fstream file;
 
 void play();
@@ -37,13 +36,6 @@ int main()
 
     play();
 
-    // prompt();
-    // auto gm = gameboard.MAP;
-    // for (int i = 1; i < gm.size(); i++)
-    // {
-    //     printf("%2d = (%d, %d)\n", i, gm[i].first, gm[i].second);
-    // }
-    // gameboard.
     return 0;
 }
 
