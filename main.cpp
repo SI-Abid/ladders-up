@@ -1,7 +1,6 @@
 #include "bits/stdc++.h"
 #include "library.h"
-#include "fstream"
-#include "saiham.cpp"
+#include "saiham.h"
 
 using namespace std;
 
@@ -15,19 +14,8 @@ int main()
     system("clear");
     
     LoadData();
-    prompt();    
-
-    string uuid;
-    fstream file;
-    file.open(filename, ios::in);
-    if (file)
-    {
-        while (file >> uuid)
-        {
-            file >> usr_pwd[uuid].pswd >> usr_pwd[uuid].dvsn;
-        }
-    }
-    file.close();
+    prompt();
+    LoadData();
 
     for(auto X : usr_pwd)
     {
@@ -42,9 +30,8 @@ int main()
 
 void play()
 {
-    cout<<"Enter size: ";
     int n;
-    cin >> n;
+    n = getDifficulty();
     
     Board gameboard(n);
     gameboard.makeBoard();
