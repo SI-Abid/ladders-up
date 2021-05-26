@@ -6,5 +6,9 @@ vector<int> traps();
 
 vector<int> traps()
 {
-    
+    vector<int> array;
+
+    //your code here
+
+    return array;
 }

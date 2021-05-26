@@ -1,1 +1,1 @@
-//please finish the user login part here
+//final part, bonus point, update highscore, display highscore
