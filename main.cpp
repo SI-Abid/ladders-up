@@ -28,7 +28,6 @@ int main()
     return 0;
 }
 
-
 void play()
 {
     int n;
@@ -39,7 +38,7 @@ void play()
     int **board = gameboard.data;
 
     int pos = 1, inc;
-    
+
     while (pos < n * n)
     {
         system("clear");        // for linux
