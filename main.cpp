@@ -39,15 +39,21 @@ void play()
     int **board = gameboard.data;
 
     int pos = 1, inc;
+    
     while (pos < n * n)
     {
-        system("clear"); // for linux
+        system("clear");        // for linux
+        // system("cls");       // for windows
         puts(title);
+
         for (int i = 0; i < n; i++)
         {
             for (int k = 0; k <= 4 * n; k++)
+            {
                 printf("-");
+            }
             cout << endl;
+            
             for (int j = 0; j < n; j++)
             {
                 if (board[i][j] == pos)
@@ -58,14 +64,15 @@ void play()
             cout << "|" << endl;
         }
         for (int k = 0; k <= 4 * n; k++)
+        {
             printf("-");
+        }
         cout << endl
              << "How many cell you want to move forward: ";
         cin >> inc;
         pos += inc;
+
         // printf("\033");
-        // system("cls");       // for windows
-        
     }
     cout << endl;
 }

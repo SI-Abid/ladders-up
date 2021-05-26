@@ -2,6 +2,7 @@
 #include "fstream"
 #include "time.h"
 #include "stdlib.h"
+#include "ctype.h"
 using namespace std;
 
 typedef struct
@@ -18,6 +19,7 @@ void prompt();
 void signup();
 void login();
 void LoadData();
+string ToLower(string);
 
 //------------------Functions----------------
 
@@ -40,10 +42,13 @@ void login()
     string usrname, passwd;
     system("clear");
     puts("-------Login-------");
+    
     cout << "Username: ";
     cin >> usrname;
+    
     cout << "Password: ";
     cin >> passwd;
+    
     if (usr_pwd[usrname].pswd == passwd)
     {
         cout << "Login success!" << endl;
@@ -61,8 +66,10 @@ void signup()
 {
     string usrname, passwd1, passwd2;
     int lt;
+    
     system("clear");
     puts("------Register------");
+    
     cout << "Username: ";
     cin >> usrname;
     
@@ -74,11 +81,14 @@ void signup()
         lt == 1 ? login() : signup();
         return;
     }
+    
     LineBreak:      // come here when pswd not matched
+
     cout << "Password: ";
     cin >> passwd1;
     cout << "Confirm password: ";
     cin >> passwd2;
+    
     if (passwd1 == passwd2)
     {
         fstream file;
@@ -86,11 +96,12 @@ void signup()
         string div;
         cout << "Division: "; cin >> div;
 
-        file << usrname << " " << passwd1 << " " << div << endl;
+        file << usrname << " " << passwd1 << " " << ToLower(div) << endl;
         
         cout << "Registered successfully!" << endl;
         file.close();
     }
+    
     else
     {
         cout << "Password doesn't match! Try again..." << endl;
@@ -103,8 +114,10 @@ void prompt()
 {
     int ch;
     string menu = "1: login\n2: register\n3: Quit\nEnter your choice: ";
+    
     cout << menu;
     cin >> ch;
+    
     switch (ch)
     {
     case 1:
@@ -121,4 +134,13 @@ void prompt()
         prompt();
         break;
     }
+}
+
+string ToLower(string s)
+{
+    for(char &c:s)
+    {
+        c=tolower(c);
+    }
+    return s;
 }
