@@ -1,4 +1,4 @@
-//make the difficulty option here, easy=8 medium=12, hard=16
+//make the difficulty option here, easy=8, medium=12, hard=16
 #include <bits/stdc++.h>
 using namespace std;
 
