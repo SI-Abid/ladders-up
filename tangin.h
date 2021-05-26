@@ -8,6 +8,12 @@ int getDifficulty()
 {
     int difficulty;
 
+    //sample
+    string mode="easy";
+    if(mode=="easy")
+    {
+        difficulty=8;
+    }
     //your code here
 
     return difficulty;

@@ -1,12 +1,13 @@
 #include "bits/stdc++.h"
 #include "library.h"
 #include "saiham.h"
+#include "tangin.h"
 
 using namespace std;
 
 // const int n=10;
 // const char *name = "userdata.txt";
-
+const char *title = "<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<> LADDERS UP <>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>";
 void play();
 
 int main()
@@ -15,12 +16,12 @@ int main()
     
     LoadData();
     prompt();
-    LoadData();
+    // LoadData();
 
-    for(auto X : usr_pwd)
-    {
-        cout << X.first << " " << X.second.pswd<<" "<<X.second.dvsn<<endl;
-    }
+    // for(auto X : usr_pwd)
+    // {
+    //     cout << X.first << " " << X.second.pswd<<" "<<X.second.dvsn<<endl;
+    // }
 
     play();
 
@@ -41,6 +42,7 @@ void play()
     while (pos < n * n)
     {
         system("clear"); // for linux
+        puts(title);
         for (int i = 0; i < n; i++)
         {
             for (int k = 0; k <= 4 * n; k++)

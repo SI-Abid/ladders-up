@@ -38,6 +38,8 @@ void LoadData()
 void login()
 {
     string usrname, passwd;
+    system("clear");
+    puts("-------Login-------");
     cout << "Username: ";
     cin >> usrname;
     cout << "Password: ";
@@ -49,6 +51,7 @@ void login()
     }
     else
     {
+        system("clear");
         cout << "Wrong password! Try again" << endl;
         prompt();
     }
@@ -58,11 +61,14 @@ void signup()
 {
     string usrname, passwd1, passwd2;
     int lt;
+    system("clear");
+    puts("------Register------");
     cout << "Username: ";
     cin >> usrname;
     
     if (usr_pwd.find(usrname) != usr_pwd.end())
     {
+        system("clear");
         cout << "Username already exist. press 1 to login or press 2 to try again..." << endl;
         cin >> lt;
         lt == 1 ? login() : signup();
@@ -96,7 +102,8 @@ void signup()
 void prompt()
 {
     int ch;
-    cout << "Enter your choice (1-login 2-register):";
+    string menu = "1: login\n2: register\n3: Quit\nEnter your choice: ";
+    cout << menu;
     cin >> ch;
     switch (ch)
     {
@@ -105,6 +112,9 @@ void prompt()
         break;
     case 2:
         signup();
+        break;
+    case 3:
+        exit(0);
         break;
     default:
         cout << "Invalid Input. Try again..." << endl;
