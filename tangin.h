@@ -9,10 +9,10 @@ int getDifficulty()
     int difficulty;
 
     //sample
-    string mode="easy";
-    if(mode=="easy")
+    string mode="hard";
+    if(mode=="hard")
     {
-        difficulty=8;
+        difficulty=20;
     }
     //your code here
 
