@@ -3,6 +3,7 @@
 #include "saiham.h"
 #include "tangin.h"
 #include "akter.h"
+#include "sakayat.h"
 
 using namespace std;
 
@@ -58,7 +59,7 @@ void play()
 {
     int n;
     n = getDifficulty();
-    
+    vector<bool> isTrap = traps(n);
     Board gameboard(n);
     gameboard.makeBoard();
     int **board = gameboard.data;
@@ -83,6 +84,8 @@ void play()
             {
                 if (board[i][j] == pos)
                     printf("| X ");
+                else if(isTrap[board[i][j]])
+                    printf("| 0 ");
                 else
                     printf("|   ");
             }
