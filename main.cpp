@@ -68,6 +68,7 @@ void play()
 
     while (pos < n * n)
     {
+        
         system("clear");        // for linux
         // system("cls");       // for windows
         cout << title << endl;

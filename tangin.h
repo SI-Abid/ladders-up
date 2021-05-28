@@ -1,4 +1,4 @@
-//make the difficulty option here, easy=8, medium=12, hard=16
+//make the difficulty option here, easy=9, medium=13, hard=18
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,10 +9,10 @@ int getDifficulty()
     int difficulty;
 
     //sample
-    string mode="hard";
-    if(mode=="hard")
+    string mode="easy";
+    if(mode=="easy")
     {
-        difficulty=16;
+        difficulty=18;
     }
     //your code here
 

@@ -10,16 +10,11 @@ vector<bool> traps(int size)
 {
     vector<bool> array(size);
     srand(time(0));
-
-    for(int i=0; i<size; i++)
+    // int seed = size % 5;
+    for(int i=1; i<size; i++)
     {
-        rand()*100 % size == 0  ? array[i] = true : array[i] = false;
+        time(0)&1 && !array[i-1] ? array[i] = true : array[i] = false;
     }
 
     return array;
-}
-
-int main()
-{
-    return 0;
 }
