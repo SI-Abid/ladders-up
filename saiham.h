@@ -1,7 +1,5 @@
 #include "bits/stdc++.h"
 #include "fstream"
-#include "time.h"
-#include "stdlib.h"
 #include "ctype.h"
 using namespace std;
 
