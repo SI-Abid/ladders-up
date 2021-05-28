@@ -1,20 +1,24 @@
-//make the difficulty option here, easy=9, medium=13, hard=18
-#include <bits/stdc++.h>
-using namespace std;
-
-int getDifficulty();
-
-int getDifficulty()
+#include <stdio.h>
+int main()
 {
-    int difficulty;
-
-    //sample
-    string mode="easy";
-    if(mode=="easy")
+    int choice, difficulty;
+    printf("Choose your level\n1.Easy\n2.Medium\n3.Hard\nEnter choice:");
+    scanf("%d",&choice);
+    
+    switch(choice)
     {
-        difficulty=18;
+        case 1:
+            difficulty = 9;
+        break;
+        
+        case 2:
+            difficulty = 13;
+        break;
+        
+        case 3:
+            difficulty = 18;
+        break;
+        
     }
-    //your code here
-
-    return difficulty;
+    return 0;
 }
