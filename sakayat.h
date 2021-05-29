@@ -13,7 +13,7 @@ vector<bool> traps(int size)
     // int seed = size % 5;
     for(int i=1; i<size; i++)
     {
-        time(0)&1 && !array[i-1] ? array[i] = true : array[i] = false;
+        time(0)%2==0 && !array[i-1] ? array[i] = true : array[i] = false;
     }
 
     return array;
