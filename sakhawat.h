@@ -4,6 +4,8 @@
 #include "stdlib.h"
 using namespace std;
 
+
+
 vector<bool> traps(int size);
 
 vector<bool> traps(int size)
