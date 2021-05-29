@@ -6,6 +6,7 @@ using namespace std;
 typedef struct
 {
     string que, optA, optB, optC;
+    bool used;
 } quiz;
 
 int getQuiz();
