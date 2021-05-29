@@ -1,5 +1,5 @@
 #include <stdio.h>
-int main()
+int getDifficulty()
 {
     int choice, difficulty;
     printf("Choose your level\n1.Easy\n2.Medium\n3.Hard\nEnter choice:");
@@ -20,5 +20,5 @@ int main()
         break;
         
     }
-    return 0;
+    return difficulty;
 }
