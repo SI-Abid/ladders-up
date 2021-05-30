@@ -3,7 +3,7 @@
 #include "saiham.h"
 #include "tangin.h"
 #include "akter.h"
-#include "sakayat.h"
+#include "sakhawat.h"
 
 using namespace std;
 
@@ -17,17 +17,17 @@ int main()
 {
     system("clear");
     
-    LoadData();
-    prompt();
     // LoadData();
+    // prompt();
+    // // LoadData();
 
-    // for(auto X : usr_pwd)
-    // {
-    //     cout << X.first << " " << X.second.pswd<<" "<<X.second.dvsn<<endl;
-    // }
+    // // for(auto X : usr_pwd)
+    // // {
+    // //     cout << X.first << " " << X.second.pswd<<" "<<X.second.dvsn<<endl;
+    // // }
 
-    Menu();
-
+    // Menu();
+    loadQuiz();
     return 0;
 }
 

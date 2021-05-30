@@ -45,6 +45,7 @@ void LoadData()
             file >> usr_pwd[uuid].pswd >> usr_pwd[uuid].dvsn;
         }
     }
+    file.close();
 }
 
 void login()
@@ -184,10 +185,10 @@ int loadQuiz()
         prosno[i].used = false;
     }
     file.close();
-    for(int i=0; i<50; i++)
-    {
-        cout<<prosno[i].que<<endl<<prosno[i].optA<<" "<<prosno[i].optB<<" "<<prosno[i].optC<<endl;
-        cout<<prosno[i].ans<<" "<<prosno[i].used?"Used":"Unused"<<endl;
-    }
+    // for(int i=0; i<50; i++)
+    // {
+    //     cout<<prosno[i].que<<endl<<prosno[i].optA<<" "<<prosno[i].optB<<" "<<prosno[i].optC<<endl;
+    //     cout<<prosno[i].ans<<" "<<(prosno[i].used?"Used":"Unused")<<endl;
+    // }
     return point;
 }
