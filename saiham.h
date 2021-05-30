@@ -28,7 +28,8 @@ void prompt();
 void signup();
 void login();
 void LoadData();
-int loadQuiz();
+void loadQuiz();
+
 string ToLower(string);
 
 //------------------Functions----------------
@@ -156,9 +157,8 @@ string ToLower(string s)
     return s;
 }
 
-int loadQuiz()
+void loadQuiz()
 {
-    int point;
     string line;
     fstream file;
     file.open("Trivia.txt", ios::in);
@@ -190,5 +190,4 @@ int loadQuiz()
     //     cout<<prosno[i].que<<endl<<prosno[i].optA<<" "<<prosno[i].optB<<" "<<prosno[i].optC<<endl;
     //     cout<<prosno[i].ans<<" "<<(prosno[i].used?"Used":"Unused")<<endl;
     // }
-    return point;
 }
