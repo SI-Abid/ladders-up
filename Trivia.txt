@@ -1,7 +1,4 @@
-﻿Trivia
-
-
-1.What’s the synonym for the word “Synonym” ?
+﻿1.What’s the synonym for the word “Synonym” ?
 Antonym ,Similar Word ,None of the above, None of the above
 
 
@@ -14,7 +11,7 @@ A clownfish , A catfish ,A bluefish, A clownfish
 
 
 4.How many pairs of wings do bees have? 
- Three , Five ,Two, Two
+Three , Five ,Two, Two
 
 
 5.When do leaves die?
