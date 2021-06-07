@@ -65,8 +65,9 @@ void play()
     while (pos < n * n)
     {
 
-        system("clear"); // for linux
         // system("cls");       // for windows
+        
+        system("clear"); // for linux
         cout << title << endl;
 
         for (int i = 0; i < n; i++)
@@ -82,19 +83,6 @@ void play()
                 if(pos==board[i][j])
                 {
                     cout << "| X ";
-                    if (isTrap[pos])
-                    {
-                        cout << "Oops! You have landed on a trap..." << endl;
-                        score -= 5;
-                    }
-                    else if (pos^rand())
-                    {
-                        score += popQuiz();
-                    }
-                    else
-                    {
-                        score += 5;
-                    }
                 }
                 else
                 {
@@ -108,8 +96,22 @@ void play()
             cout << "-";
         }
         cout << endl;
-
+        
+        if (isTrap[pos])
+        {
+            cout << "Oops! You have landed on a trap..." << endl;
+            score -= 5;
+        }
+        else if (pos%19==0)
+        {
+            score += popQuiz();
+        }
+        else
+        {
+            score += 5;
+        }
         int move = 1;
+        
         do
         {
             if (move > 10 || move < 1)
@@ -121,6 +123,7 @@ void play()
         } while (move > 10 || move < 1);
 
         pos += move;
+        
         // printf("\033");
     }
     cout << endl;

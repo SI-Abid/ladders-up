@@ -31,6 +31,7 @@ typedef struct
 const char *userdata = "Data/userdata.txt";
 string division[8] = {"dhaka", "khulna", "barisal", "chittagong", "mymensingh", "rajshahi", "rangpur", "sylhet"};
 map<string, data> usr_pwd;
+map<string, int> scoreBoard;
 quiz prosno[50];
 vector<bool> isTrap;
 string usrname, prefix = "Data/", suffix = ".txt";
@@ -287,6 +288,8 @@ void Highscore()
             all_score.push_back({name, score});
         }
     }
+    fin.close();
+    
     sort(all_score.begin(), all_score.end(), compare);
     cout << "--------------Leaderboard--------------" << endl;
     for (auto x : all_score)
