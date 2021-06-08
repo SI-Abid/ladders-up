@@ -9,7 +9,7 @@
 #include "stdlib.h"
 #include "time.h"
 #include "cstring"
-
+#include "string"
 using namespace std;
 
 //------------------Structure----------------
@@ -48,6 +48,7 @@ void loadTraps(int);
 void loadScore();
 void saveScore();
 void Highscore();
+void sortScore();
 int random(int, int);
 string ToLower(string);
 
@@ -70,6 +71,8 @@ void loadData()
 
 void login()
 {
+    scoreBoard.clear();
+
     string passwd;
     system("clear");
     puts("-------Login-------");
@@ -144,27 +147,28 @@ LineBreak: // come here when pswd not matched
 
 void prompt()
 {
-    int ch;
+    string ch;
     string menu = "1: login\n2: register\n3: Quit\nEnter your choice: ";
 
     cout << menu;
     cin >> ch;
 
-    switch (ch)
+    if(ch=="1")
     {
-    case 1:
         login();
-        break;
-    case 2:
+    }
+    else if(ch=="2")
+    {
         signup();
-        break;
-    case 3:
+    }
+    else if(ch=="3")
+    {
         exit(0);
-        break;
-    default:
+    }
+    else
+    {
         cout << "Invalid Input. Try again..." << endl;
         prompt();
-        break;
     }
 }
 
@@ -234,16 +238,30 @@ void loadTraps(int size)
 
 void saveScore(int score)
 {
+    loadScore();
+    
     string div = prefix + usr_pwd[usrname].dvsn + suffix;
-
-    fstream file;
-    file.open(div.c_str(), ios::out | ios::app);
-
-    if (file)
+    if(score > scoreBoard[usrname] && score)
     {
-        file << usrname << " " << score << endl;
+        cout<<"Hooray! You have made a new highscore."<<endl;
     }
-    file.close();
+    scoreBoard[usrname]=max(scoreBoard[usrname],score);
+    vector<pair<int,string>> pairs;
+
+    for(auto x: scoreBoard)
+    {
+        pairs.push_back({x.second, x.first});
+    }
+    sort(pairs.rbegin(),pairs.rend());
+
+    fstream fout;
+    fout.open(div.c_str(), ios::out);
+    if(fout)
+    for(auto x:pairs)
+    {
+        fout<<x.second<<" "<<x.first<<endl;
+    }
+    fout.close();
 }
 
 int random(int minN, int maxN)
@@ -271,9 +289,17 @@ bool compare(pair<string, int> a, pair<string, int> b)
 
 void Highscore()
 {
-    string div = prefix + usr_pwd[usrname].dvsn + suffix;
-    vector<pair<string, int>> all_score;
+    loadScore();
+    cout << "--------------Leaderboard--------------" << endl;
+    for (auto x : scoreBoard)
+    {
+        cout << x.first << " " << x.second << endl;
+    }
+}
 
+void loadScore()
+{
+    string div = prefix + usr_pwd[usrname].dvsn + suffix;
     fstream fin;
     fin.open(div.c_str(), ios::in);
 
@@ -285,15 +311,13 @@ void Highscore()
         {
             fin >> score;
             // auto value = make_pair(name, score);
-            all_score.push_back({name, score});
+            scoreBoard[name]=score;
         }
     }
     fin.close();
-    
-    sort(all_score.begin(), all_score.end(), compare);
-    cout << "--------------Leaderboard--------------" << endl;
-    for (auto x : all_score)
-    {
-        cout << x.first << " " << x.second << endl;
-    }
+}
+
+void sortScore()
+{
+
 }

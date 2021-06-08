@@ -20,34 +20,31 @@ int main()
     system("clear");
     loadData();
     loadQuiz();
-    prompt();
-    Menu();
-    saveScore(score);
+    while(true)
+    {
+        prompt();
+        Menu();
+    }
+    
     return 0;
 }
 
 void Menu()
 {
-    string menu = "1: Play\n2: Highscore (X)\n3: Quit\nEnter your option: ";
+    string menu = "1: Play\n2: Highscore (X)\n3: Log out\nEnter your option: ";
     cout << menu;
-    int opt;
+    string opt;
     cin >> opt;
-    switch (opt)
+    if(opt=="1")
     {
-    case 1:
         play();
-        break;
-    case 2:
-        Highscore();
-        break;
-    case 3:
-        return;
-        break;
-    default:
-        cout << "Invalid option! Try again..." << endl;
-        Menu();
-        break;
     }
+    else if(opt=="2")
+    {
+        Highscore();
+    }
+    saveScore(score);
+    Menu();
 }
 
 void play()
