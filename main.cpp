@@ -35,14 +35,31 @@ void Menu()
     cout << menu;
     string opt;
     cin >> opt;
-    if(opt=="1")
+    switch (opt[0])
     {
+    case '1':
         play();
-    }
-    else if(opt=="2")
-    {
+        break;
+    case '2':
         Highscore();
+        break;
+    case '3':
+        return;
+    default:
+        break;
     }
+    // if(opt=="1")
+    // {
+    //     play();
+    // }
+    // else if(opt=="2")
+    // {
+    //     Highscore();
+    // }
+    // else if(opt=="3")
+    // {
+    //     return;
+    // }
     saveScore(score);
     Menu();
 }

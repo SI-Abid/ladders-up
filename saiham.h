@@ -230,7 +230,7 @@ void loadTraps(int size)
         opacity = 10;
         break;
     }
-    for (int i = 0; i < size * size; i++)
+    for (int i = 1; i < size * size; i++)
     {
         isTrap[i] = ((rand() % opacity) * rand() % opacity ? 0 : 1);
     }
