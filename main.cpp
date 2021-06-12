@@ -11,26 +11,28 @@ using namespace std;
 
 int score = 0;
 // const char *name = "userdata.txt";
-string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
+const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
+const string menu = "1: Play\n2: Highscore (X)\n3: Log out\nEnter your option: ";
+
 void play();
 void Menu();
 
 int main()
 {
-    system("clear");
+    CLEAR;
     loadQuiz();
-    while(true)
+    while (true)
     {
         prompt();
         Menu();
     }
-    
+
     return 0;
 }
 
 void Menu()
 {
-    string menu = "1: Play\n2: Highscore (X)\n3: Log out\nEnter your option: ";
+    CLEAR;
     cout << menu;
     string opt;
     cin >> opt;
@@ -80,8 +82,8 @@ void play()
     {
 
         // system("cls");       // for windows
-        
-        system("clear"); // for linux
+
+        CLEAR; // for linux
         cout << title << endl;
 
         for (int i = 0; i < n; i++)
@@ -94,13 +96,13 @@ void play()
 
             for (int j = 0; j < n; j++)
             {
-                if(pos==board[i][j])
+                if (pos == board[i][j])
                 {
                     cout << "| X ";
                 }
                 else
                 {
-                    cout<<"|   ";
+                    cout << "|   ";
                 }
             }
             cout << "|" << endl;
@@ -110,13 +112,13 @@ void play()
             cout << "-";
         }
         cout << endl;
-        
+
         if (isTrap[pos])
         {
             cout << "Oops! You have landed on a trap..." << endl;
             score -= 5;
         }
-        else if (pos%19==0)
+        else if (pos % 19 == 0)
         {
             score += popQuiz();
         }
@@ -125,7 +127,7 @@ void play()
             score += 5;
         }
         int move = 1;
-        
+
         do
         {
             if (move > 10 || move < 1)
@@ -137,7 +139,7 @@ void play()
         } while (move > 10 || move < 1);
 
         pos += move;
-        
+
         // printf("\033");
     }
     cout << endl;

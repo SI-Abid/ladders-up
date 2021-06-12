@@ -1,3 +1,11 @@
+#ifdef _WIN32
+#define CLEAR system("cls")
+#endif
+
+#ifndef _WIN32
+#define CLEAR system("clear")
+#endif
+
 #include "iostream"
 #include "algorithm"
 #include "utility"
@@ -51,7 +59,7 @@ void Highscore();
 void sortScore();
 int random(int, int);
 string ToLower(string);
-
+void pause();
 //----------------------Functions-----------------------
 
 void loadData()
@@ -76,7 +84,7 @@ void login()
     scoreBoard.clear();
 
     string passwd;
-    system("clear");
+    CLEAR;
     puts("-------Login-------");
 
     cout << "Username: ";
@@ -88,15 +96,13 @@ void login()
     if (usr_pwd[usrname].pswd == passwd)
     {
         cout << "Login success!" << endl;
-        cout << "Press any key to continue...";
-        cin.get();
-        cin.get();
+        pause();
 
         return;
     }
     else
     {
-        system("clear");
+        CLEAR;
         cout << "Wrong password! Try again" << endl;
         prompt();
     }
@@ -109,7 +115,7 @@ void signup()
     string passwd1, passwd2;
     int lt;
 
-    system("clear");
+    CLEAR;
     puts("------Register------");
 
     cout << "Username: ";
@@ -117,7 +123,7 @@ void signup()
 
     if (usr_pwd.find(usrname) != usr_pwd.end())
     {
-        system("clear");
+        CLEAR;
         cout << "Username already exist. press 1 to login or press 2 to try again..." << endl;
         cin >> lt;
         lt == 1 ? login() : signup();
@@ -142,9 +148,7 @@ LineBreak: // come here when pswd not matched
         file << usrname << " " << passwd1 << " " << ToLower(div) << endl;
 
         cout << "Registered successfully!" << endl;
-        cout << "Press any key to continue...";
-        cin.get();
-        cin.get();
+        pause();
 
         file.close();
     }
@@ -165,22 +169,22 @@ void prompt()
     cout << menu;
     cin >> ch;
 
-    if (ch == "1")
-    {
-        login();
-    }
-    else if (ch == "2")
-    {
-        signup();
-    }
-    else if (ch == "3")
-    {
-        exit(0);
-    }
-    else
-    {
-        cout << "Invalid Input. Try again..." << endl;
-        prompt();
+    // if (ch == "1")
+    // {
+    //     login();
+    // }
+    // else if (ch == "2")
+    // {
+    //     signup();
+    // }
+    // else if (ch == "3")
+    // {
+    //     exit(0);
+    // }
+    // else
+    // {
+    //     cout << "Invalid Input. Try again..." << endl;
+    //     prompt();
     }
 }
 
@@ -256,6 +260,7 @@ void saveScore(int score)
     if (score > scoreBoard[usrname] && score)
     {
         cout << "Hooray! You have made a new highscore." << endl;
+        pause();
     }
     scoreBoard[usrname] = max(scoreBoard[usrname], score);
     vector<pair<int, string> > pairs;
@@ -308,6 +313,7 @@ void Highscore()
         cout << x.first << " " << x.second << endl;
     }
     cout << "---------------------------------------" << endl << endl;
+    pause();
 }
 
 void loadScore()
@@ -328,4 +334,11 @@ void loadScore()
         }
     }
     fin.close();
+}
+
+void pause()
+{
+    cout << "Press any key to continue...";
+    cin.get();
+    cin.get();
 }
