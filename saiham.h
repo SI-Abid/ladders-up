@@ -168,7 +168,21 @@ void prompt()
 
     cout << menu;
     cin >> ch;
-
+    switch (ch[0])
+    {
+    case '1':
+        login();
+        break;
+    case '2':
+        signup();
+        break;
+    case '3':
+        exit(0);
+    default:
+        cout << "Invalid Input. Try again..." << endl;
+        prompt();
+        break;
+    }
     // if (ch == "1")
     // {
     //     login();
@@ -181,11 +195,6 @@ void prompt()
     // {
     //     exit(0);
     // }
-    // else
-    // {
-    //     cout << "Invalid Input. Try again..." << endl;
-    //     prompt();
-    }
 }
 
 string ToLower(string s)
