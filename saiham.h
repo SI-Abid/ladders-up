@@ -71,6 +71,8 @@ void loadData()
 
 void login()
 {
+    loadData();
+
     scoreBoard.clear();
 
     string passwd;
@@ -86,6 +88,10 @@ void login()
     if (usr_pwd[usrname].pswd == passwd)
     {
         cout << "Login success!" << endl;
+        cout << "Press any key to continue...";
+        cin.get();
+        cin.get();
+
         return;
     }
     else
@@ -98,6 +104,8 @@ void login()
 
 void signup()
 {
+    loadData();
+
     string passwd1, passwd2;
     int lt;
 
@@ -134,6 +142,10 @@ LineBreak: // come here when pswd not matched
         file << usrname << " " << passwd1 << " " << ToLower(div) << endl;
 
         cout << "Registered successfully!" << endl;
+        cout << "Press any key to continue...";
+        cin.get();
+        cin.get();
+
         file.close();
     }
 
@@ -153,15 +165,15 @@ void prompt()
     cout << menu;
     cin >> ch;
 
-    if(ch=="1")
+    if (ch == "1")
     {
         login();
     }
-    else if(ch=="2")
+    else if (ch == "2")
     {
         signup();
     }
-    else if(ch=="3")
+    else if (ch == "3")
     {
         exit(0);
     }
@@ -239,28 +251,28 @@ void loadTraps(int size)
 void saveScore(int score)
 {
     loadScore();
-    
-    string div = prefix + usr_pwd[usrname].dvsn + suffix;
-    if(score > scoreBoard[usrname] && score)
-    {
-        cout<<"Hooray! You have made a new highscore."<<endl;
-    }
-    scoreBoard[usrname]=max(scoreBoard[usrname],score);
-    vector<pair<int,string>> pairs;
 
-    for(auto x: scoreBoard)
+    string div = prefix + usr_pwd[usrname].dvsn + suffix;
+    if (score > scoreBoard[usrname] && score)
+    {
+        cout << "Hooray! You have made a new highscore." << endl;
+    }
+    scoreBoard[usrname] = max(scoreBoard[usrname], score);
+    vector<pair<int, string> > pairs;
+
+    for (auto x : scoreBoard)
     {
         pairs.push_back({x.second, x.first});
     }
-    sort(pairs.rbegin(),pairs.rend());
+    sort(pairs.rbegin(), pairs.rend());
 
     fstream fout;
     fout.open(div.c_str(), ios::out);
-    if(fout)
-    for(auto x:pairs)
-    {
-        fout<<x.second<<" "<<x.first<<endl;
-    }
+    if (fout)
+        for (auto x : pairs)
+        {
+            fout << x.second << " " << x.first << endl;
+        }
     fout.close();
 }
 
@@ -295,6 +307,7 @@ void Highscore()
     {
         cout << x.first << " " << x.second << endl;
     }
+    cout << "---------------------------------------" << endl << endl;
 }
 
 void loadScore()
@@ -311,13 +324,8 @@ void loadScore()
         {
             fin >> score;
             // auto value = make_pair(name, score);
-            scoreBoard[name]=score;
+            scoreBoard[name] = score;
         }
     }
     fin.close();
-}
-
-void sortScore()
-{
-
 }

@@ -18,7 +18,6 @@ void Menu();
 int main()
 {
     system("clear");
-    loadData();
     loadQuiz();
     while(true)
     {
@@ -45,6 +44,7 @@ void Menu()
         break;
     case '3':
         return;
+
     default:
         break;
     }
