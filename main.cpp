@@ -3,11 +3,9 @@
 #include "vector"
 #include "stdlib.h"
 #include "time.h"
-#include "library.h"
 #include "saiham.h"
 
 using namespace std;
-
 
 int main()
 {
@@ -21,4 +19,3 @@ int main()
 
     return 0;
 }
-

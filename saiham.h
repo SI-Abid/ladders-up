@@ -1,14 +1,6 @@
-#ifdef _WIN32
-#define CLEAR system("cls")
-#endif
-
-#ifndef _WIN32
-#define CLEAR system("clear")
-#endif
-
 #include "iostream"
 #include "algorithm"
-#include "utility"
+// #include "utility"
 #include "map"
 #include "vector"
 #include "fstream"
@@ -19,6 +11,7 @@
 #include "cstring"
 #include "string"
 #include "tangin.h"
+#include "library.h"
 
 using namespace std;
 
@@ -49,6 +42,7 @@ int score = 0;
 // const char *name = "userdata.txt";
 const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
 const string menu = "1: Play\n2: Highscore\n3: Log out\nEnter your option: ";
+const string login_menu = "1: login\n2: register\n3: Quit\nEnter your choice: ";
 
 //----------------------Prototypes----------------------
 
@@ -172,9 +166,8 @@ LineBreak: // come here when pswd not matched
 void prompt()
 {
     string ch;
-    string menu = "1: login\n2: register\n3: Quit\nEnter your choice: ";
 
-    cout << menu;
+    cout << login_menu;
     cin >> ch;
     switch (ch[0])
     {
@@ -191,7 +184,6 @@ void prompt()
         prompt();
         break;
     }
-  
 }
 
 string ToLower(string s)
@@ -269,7 +261,7 @@ void saveScore(int score)
         pause();
     }
     scoreBoard[usrname] = max(scoreBoard[usrname], score);
-    vector<pair<int, string> > pairs;
+    vector<pair<int, string>> pairs;
 
     for (auto x : scoreBoard)
     {
@@ -318,7 +310,8 @@ void Highscore()
     {
         cout << x.first << " " << x.second << endl;
     }
-    cout << "---------------------------------------" << endl << endl;
+    cout << "---------------------------------------" << endl
+         << endl;
     pause();
 }
 
@@ -348,7 +341,6 @@ void pause()
     cin.get();
     cin.get();
 }
-
 
 void Menu()
 {
@@ -422,7 +414,7 @@ void play()
         }
         cout << endl;
 
-        if (isTrap[pos])
+        if (isTrap[pos-1])
         {
             cout << "Oops! You have landed on a trap..." << endl;
             score -= 5;

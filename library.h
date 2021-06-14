@@ -1,5 +1,14 @@
+#ifdef _WIN32
+#define CLEAR system("cls")
+#endif
+
+#ifndef _WIN32
+#define CLEAR system("clear")
+#endif
+
 #include <iostream>
 #include <vector>
+// #include <utility>
 using namespace std;
 
 class Board
