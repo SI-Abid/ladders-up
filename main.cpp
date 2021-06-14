@@ -50,18 +50,7 @@ void Menu()
     default:
         break;
     }
-    // if(opt=="1")
-    // {
-    //     play();
-    // }
-    // else if(opt=="2")
-    // {
-    //     Highscore();
-    // }
-    // else if(opt=="3")
-    // {
-    //     return;
-    // }
+
     saveScore(score);
     Menu();
 }

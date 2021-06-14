@@ -183,18 +183,7 @@ void prompt()
         prompt();
         break;
     }
-    // if (ch == "1")
-    // {
-    //     login();
-    // }
-    // else if (ch == "2")
-    // {
-    //     signup();
-    // }
-    // else if (ch == "3")
-    // {
-    //     exit(0);
-    // }
+  
 }
 
 string ToLower(string s)
