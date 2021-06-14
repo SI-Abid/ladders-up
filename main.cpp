@@ -12,7 +12,7 @@ using namespace std;
 int score = 0;
 // const char *name = "userdata.txt";
 const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
-const string menu = "1: Play\n2: Highscore (X)\n3: Log out\nEnter your option: ";
+const string menu = "1: Play\n2: Highscore\n3: Log out\nEnter your option: ";
 
 void play();
 void Menu();
