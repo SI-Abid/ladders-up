@@ -38,7 +38,7 @@ map<string, int> scoreBoard;
 quiz prosno[50];
 vector<bool> isTrap;
 string usrname, prefix = "Data/", suffix = ".txt";
-int score = 0;
+int score;
 // const char *name = "userdata.txt";
 const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
 const string menu = "1: Play\n2: Highscore\n3: Log out\nEnter your option: ";
@@ -369,6 +369,7 @@ void Menu()
 
 void play()
 {
+    int score=0;
     srand(time(0));
     int n;
     n = getDifficulty();
@@ -381,7 +382,7 @@ void play()
 
     while (pos < n * n)
     {
-
+        score=0;
         // system("cls");       // for windows
 
         CLEAR; // for linux
