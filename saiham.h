@@ -40,7 +40,7 @@ vector<bool> isTrap;
 string usrname, prefix = "Data/", suffix = ".txt";
 int score;
 // const char *name = "userdata.txt";
-const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
+const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
 const string menu = "1: Play\n2: Highscore\n3: Log out\nEnter your option: ";
 const string login_menu = "1: login\n2: register\n3: Quit\nEnter your choice: ";
 
@@ -337,7 +337,7 @@ void loadScore()
 
 void pause()
 {
-    cout << "Press any key to continue...";
+    cout << "Press Enter to continue...";
     cin.get();
     cin.get();
 }
@@ -390,7 +390,7 @@ void play()
 
         for (int i = 0; i < n; i++)
         {
-            for (int k = 0; k <= 4 * n; k++)
+            for (int k = 0; k <= 5 * n; k++)
             {
                 printf("-");
             }
@@ -400,16 +400,16 @@ void play()
             {
                 if (pos == board[i][j])
                 {
-                    cout << "| X ";
+                    isTrap[pos-1]?cout << "| 😟 ":cout << "| 🙂 ";
                 }
                 else
                 {
-                    cout << "|   ";
+                    cout << "|    ";
                 }
             }
             cout << "|" << endl;
         }
-        for (int k = 0; k <= 4 * n; k++)
+        for (int k = 0; k <= 5 * n; k++)
         {
             cout << "-";
         }
