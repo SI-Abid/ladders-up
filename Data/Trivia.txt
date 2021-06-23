@@ -1,7 +1,7 @@
 What’s the synonym for the word “Synonym” ?
 Antonym,Similar Word,None of the above,c
 Which ocean is off the California coast?
-The Pacific,The Pacific,The Atlantic,b
+The Pasific,The Pacific,The Atlantic,b
 What type of fish is Nemo?
 A clownish,A catfish,A bluefish,a
 How many pairs of wings do bees have? 

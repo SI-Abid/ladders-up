@@ -1,8 +1,4 @@
 #include "iostream"
-#include "map"
-#include "vector"
-#include "stdlib.h"
-#include "time.h"
 #include "saiham.h"
 
 using namespace std;

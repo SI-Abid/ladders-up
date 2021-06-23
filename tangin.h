@@ -17,7 +17,7 @@ int getDifficulty()
         break;
         
         case 3:
-            difficulty = 18;
+            difficulty = 17;
         break;
         
     }

@@ -1,3 +1,11 @@
+#ifdef _WIN32
+#define CLEAR system("cls")
+#endif
+
+#ifndef _WIN32
+#define CLEAR system("clear")
+#endif
+
 #include "iostream"
 #include "algorithm"
 // #include "utility"
@@ -11,7 +19,6 @@
 #include "cstring"
 #include "string"
 #include "tangin.h"
-#include "library.h"
 
 using namespace std;
 
@@ -29,6 +36,80 @@ typedef struct
     bool used;
 } quiz;
 
+//----------------------Class--------------------
+
+class Board
+{
+private:
+    int row = 1, col = 1, n;
+
+public:
+    int **data;
+    vector<pair<int, int>> MAP;
+
+    Board(int);
+    ~Board();
+
+    void makeBoard()
+    {
+        //generate a board of n square
+        int nn = n * n, i;
+        for (i = 0; i < n; i++)
+        {
+            if ((i ^ n) % 2)
+            {
+                col = 1;
+                setF(nn - (n * i), n);
+            }
+            else
+            {
+                col = 1;
+                setR(nn - (n * i), n);
+            }
+            row++;
+        }
+        // return data;
+    }
+
+    void setF(int n, int k)
+    {
+        if (k == 0)
+            return;
+
+        setF(n - 1, k - 1);
+        data[row - 1][col - 1] = n;
+        MAP[n] = {row, col};
+        col++;
+    }
+
+    void setR(int n, int k)
+    {
+        if (k == 0)
+            return;
+
+        data[row - 1][col - 1] = n;
+        MAP[n] = {row, col};
+        col++;
+        setR(n - 1, k - 1);
+    }
+};
+
+Board::Board(int x)
+{
+    n = x;
+    MAP.resize(x * x + 1);
+    data = new int *[x];
+    for (int k = 0; k < x; k++)
+        data[k] = new int[x];
+}
+
+Board::~Board()
+{
+    for (int i = 0; i < n; i++)
+        delete data[i];
+    delete data;
+}
+
 //---------------------Global varriables----------------
 
 const char *userdata = "Data/userdata.txt";
@@ -38,7 +119,6 @@ map<string, int> scoreBoard;
 quiz prosno[50];
 vector<bool> isTrap;
 string usrname, prefix = "Data/", suffix = ".txt";
-int score;
 // const char *name = "userdata.txt";
 const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
 const string menu = "1: Play\n2: Highscore\n3: Log out\nEnter your option: ";
@@ -58,10 +138,10 @@ void loadTraps(int);
 void loadScore();
 void saveScore();
 void Highscore();
-void sortScore();
 int random(int, int);
 string ToLower(string);
 void pause();
+bool compare(pair<string, int>, pair<string, int>);
 //----------------------Functions-----------------------
 
 void loadData()
@@ -87,7 +167,8 @@ void login()
 
     string passwd;
     CLEAR;
-    puts("-------Login-------");
+    cout << title << endl;
+    cout << "-------Login-------" << endl;
 
     cout << "Username: ";
     cin >> usrname;
@@ -118,6 +199,7 @@ void signup()
     int lt;
 
     CLEAR;
+    cout << title << endl;
     puts("------Register------");
 
     cout << "Username: ";
@@ -143,8 +225,15 @@ LineBreak: // come here when pswd not matched
     {
         fstream file;
         file.open(userdata, ios::out | ios::app);
+        
         string div;
-        cout << "Division: ";
+        cout << "Select you division- ";
+        for (int i = 0; i < 8; i++)
+        {
+            cout << division[i] << "/";
+        }
+        cout << endl
+             << "Division: ";
         cin >> div;
 
         file << usrname << " " << passwd1 << " " << ToLower(div) << endl;
@@ -167,6 +256,7 @@ void prompt()
 {
     string ch;
 
+    cout << title << endl;
     cout << login_menu;
     cin >> ch;
     switch (ch[0])
@@ -281,20 +371,35 @@ void saveScore(int score)
 
 int random(int minN, int maxN)
 {
+    srand(time(0));
     return (rand() % (maxN - minN)) + minN;
 }
 
 int popQuiz()
 {
     cout << "~~~~~~~~Stop! You have stumbled upon a trivia. Time to test your IQ~~~~~~~~" << endl;
-    int r = random(0, 49);
+    int r;
+    do
+    {
+        r=random(0,49);
+    } while (prosno[r].used);
+    
     cout << prosno[r].que << endl;
     cout << "(A) " << prosno[r].optA << "(B) " << prosno[r].optB << "(C) " << prosno[r].optC << endl;
-    cout << "Your answer(a/b/c): " << endl;
+    cout << "Your answer(a/b/c): ";
     char c;
     cin >> c;
     prosno[r].used = true;
-    return tolower(c) == prosno[r].ans ? 10 : -10;
+    if (tolower(c) == prosno[r].ans)
+    {
+        cout << "Yeppy! Correct answer." << endl;
+        return 10;
+    }
+    else
+    {
+        cout << "Oops! You are wrong..." << endl;
+        return -10;
+    }
 }
 
 bool compare(pair<string, int> a, pair<string, int> b)
@@ -345,6 +450,7 @@ void pause()
 void Menu()
 {
     CLEAR;
+    cout << title << endl;
     cout << menu;
     string opt;
     cin >> opt;
@@ -363,15 +469,16 @@ void Menu()
         break;
     }
 
-    saveScore(score);
     Menu();
 }
 
 void play()
 {
-    int score=0;
-    srand(time(0));
     int n;
+    int score = 0;
+
+    srand(time(0));
+    loadQuiz();
     n = getDifficulty();
     loadTraps(n);
     Board gameboard(n);
@@ -382,7 +489,7 @@ void play()
 
     while (pos < n * n)
     {
-        score=0;
+        score = 0;
         // system("cls");       // for windows
 
         CLEAR; // for linux
@@ -400,7 +507,11 @@ void play()
             {
                 if (pos == board[i][j])
                 {
-                    isTrap[pos-1]?cout << "| 😟 ":cout << "| 🙂 ";
+                    // isTrap[pos-1]?cout << "| 😟 ":cout << "| 🙂 ";
+                    if (pos % 19 == 0)
+                        cout << "| \U0001F914 "; //thinking emoji
+                    else
+                        isTrap[pos - 1] ? cout << "| \U0001F635 " : cout << "| \U0001F642 ";
                 }
                 else
                 {
@@ -415,14 +526,14 @@ void play()
         }
         cout << endl;
 
-        if (isTrap[pos-1])
+        if (pos % 19 == 0)
+        {
+            score += popQuiz();
+        }
+        else if (isTrap[pos - 1])
         {
             cout << "Oops! You have landed on a trap..." << endl;
             score -= 5;
-        }
-        else if (pos % 19 == 0)
-        {
-            score += popQuiz();
         }
         else
         {
@@ -445,4 +556,5 @@ void play()
         // printf("\033");
     }
     cout << endl;
+    saveScore(score);
 }
