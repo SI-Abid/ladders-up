@@ -113,9 +113,10 @@ Board::~Board()
 //---------------------Global varriables----------------
 
 const char *userdata = "Data/userdata.txt";
-string division[8] = {"dhaka", "khulna", "barisal", "chittagong", "mymensingh", "rajshahi", "rangpur", "sylhet"};
+string division = "Dhaka/Khulna/Barisal/Chittagong/Mymensingh/Rajshahi/Rangpur/Sylhet";
 map<string, data> usr_pwd;
-map<string, int> scoreBoard;
+map<string, int> scoreBoard1;
+vector<pair<string, int>> scoreBoard2;
 quiz prosno[50];
 vector<bool> isTrap;
 string usrname, prefix = "Data/", suffix = ".txt";
@@ -163,7 +164,8 @@ void login()
 {
     loadData();
 
-    scoreBoard.clear();
+    scoreBoard1.clear();
+    scoreBoard2.clear();
 
     string passwd;
     CLEAR;
@@ -225,15 +227,10 @@ LineBreak: // come here when pswd not matched
     {
         fstream file;
         file.open(userdata, ios::out | ios::app);
-        
+
         string div;
-        cout << "Select you division- ";
-        for (int i = 0; i < 8; i++)
-        {
-            cout << division[i] << "/";
-        }
-        cout << endl
-             << "Division: ";
+        cout << "Select you division- " << division << endl;
+        cout << "Division: ";
         cin >> div;
 
         file << usrname << " " << passwd1 << " " << ToLower(div) << endl;
@@ -345,15 +342,15 @@ void saveScore(int score)
     loadScore();
 
     string div = prefix + usr_pwd[usrname].dvsn + suffix;
-    if (score > scoreBoard[usrname] && score)
+    if (score > scoreBoard1[usrname] && score)
     {
         cout << "Hooray! You have made a new highscore." << endl;
         pause();
     }
-    scoreBoard[usrname] = max(scoreBoard[usrname], score);
+    scoreBoard1[usrname] = max(scoreBoard1[usrname], score);
     vector<pair<int, string>> pairs;
 
-    for (auto x : scoreBoard)
+    for (auto x : scoreBoard1)
     {
         pairs.push_back({x.second, x.first});
     }
@@ -381,9 +378,9 @@ int popQuiz()
     int r;
     do
     {
-        r=random(0,49);
+        r = random(0, 49);
     } while (prosno[r].used);
-    
+
     cout << prosno[r].que << endl;
     cout << "(A) " << prosno[r].optA << "(B) " << prosno[r].optB << "(C) " << prosno[r].optC << endl;
     cout << "Your answer(a/b/c): ";
@@ -398,7 +395,7 @@ int popQuiz()
     else
     {
         cout << "Oops! You are wrong..." << endl;
-        return -10;
+        return -5;
     }
 }
 
@@ -411,7 +408,7 @@ void Highscore()
 {
     loadScore();
     cout << "--------------Leaderboard--------------" << endl;
-    for (auto x : scoreBoard)
+    for (auto x: scoreBoard2)
     {
         cout << x.first << " " << x.second << endl;
     }
@@ -425,7 +422,7 @@ void loadScore()
     string div = prefix + usr_pwd[usrname].dvsn + suffix;
     fstream fin;
     fin.open(div.c_str(), ios::in);
-
+    scoreBoard2.clear();
     if (fin)
     {
         string name;
@@ -434,7 +431,8 @@ void loadScore()
         {
             fin >> score;
             // auto value = make_pair(name, score);
-            scoreBoard[name] = score;
+            scoreBoard1[name] = score;
+            scoreBoard2.push_back({name,score});
         }
     }
     fin.close();
@@ -464,9 +462,6 @@ void Menu()
         break;
     case '3':
         return;
-
-    default:
-        break;
     }
 
     Menu();
@@ -489,10 +484,9 @@ void play()
 
     while (pos < n * n)
     {
-        score = 0;
         // system("cls");       // for windows
 
-        CLEAR; // for linux
+        CLEAR;
         cout << title << endl;
 
         for (int i = 0; i < n; i++)
