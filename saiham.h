@@ -8,7 +8,7 @@
 
 #include "iostream"
 #include "algorithm"
-// #include "utility"
+#include "utility"
 #include "map"
 #include "vector"
 #include "fstream"
@@ -120,7 +120,6 @@ vector<pair<string, int>> scoreBoard2;
 quiz prosno[50];
 vector<bool> isTrap;
 string usrname, prefix = "Data/", suffix = ".txt";
-// const char *name = "userdata.txt";
 const string title = "<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~> LADDERS UP <~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>-<~>";
 const string menu = "1: Play\n2: Highscore\n3: Log out\nEnter your option: ";
 const string login_menu = "1: login\n2: register\n3: Quit\nEnter your choice: ";
@@ -142,7 +141,7 @@ void Highscore();
 int random(int, int);
 string ToLower(string);
 void pause();
-bool compare(pair<string, int>, pair<string, int>);
+
 //----------------------Functions-----------------------
 
 void loadData()
@@ -226,7 +225,7 @@ LineBreak: // come here when pswd not matched
     if (passwd1 == passwd2)
     {
         fstream file;
-        file.open(userdata, ios::out | ios::app);
+        file.open(userdata, ios::app);
 
         string div;
         cout << "Select you division- " << division << endl;
@@ -399,11 +398,6 @@ int popQuiz()
     }
 }
 
-bool compare(pair<string, int> a, pair<string, int> b)
-{
-    return a.second > b.second;
-}
-
 void Highscore()
 {
     loadScore();
@@ -480,7 +474,7 @@ void play()
     gameboard.makeBoard();
     int **board = gameboard.data;
 
-    int pos = 1, inc;
+    int pos = 1;
 
     while (pos < n * n)
     {
