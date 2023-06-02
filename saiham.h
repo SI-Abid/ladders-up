@@ -326,7 +326,7 @@ void loadTraps(int size)
         opacity = 15;
         break;
 
-    case 18:
+    case 17:
         opacity = 10;
         break;
     }
